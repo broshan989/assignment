@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .main-form {
+            width: 300px;
+            border: solid 1px;
+            margin: 20px;
+            padding: 20px;
+            background-image: linear-gradient(to bottom, rgb(57, 165, 236), rgb(255, 255, 255));
+        }
+
+        input {
+            border: 0px;
+        }
+
+        #form-heading {
+            text-align: center;
+        }
+
+        .error-container {
+            color: rgba(255, 0, 0, 0.781);
+            font-style: italic;
+            font-size: small;
+            font-weight: bold;
+            margin-left: 25%;
+        }
+
+        .input-label {
+            width: 40%;
+            float: left;
+        }
+
+        .input-validation {
+            margin-left: 20%;
+            margin-bottom: 6%;
+
+        }
+
+        #submit-button {
+            color: green;
+            border-radius: 5px;
+            border: solid 1px;
+            padding: 10px;
+        }
+
+        #submit-button:hover {
+            background-color: rgb(54, 156, 54);
+            color: aliceblue;
+        }
+    </style>
+    <script>
+        var emailPattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/
+        window.onload = () => { document.getElementById("first-name").focus(); } //onload focus
+        function validate() {
+            var firstName = document.getElementById("first-name").value;
+            var lastName = document.getElementById("first-name").value;
+            var email = document.getElementById("email").value;
+            var mobile = document.getElementById("mobile-number").value;
+            var startdate = new Date(document.getElementById("start-date").value);
+            var enddate = new Date(document.getElementById("end-date").value);
+            var today = new Date();
+            // console.log(startdate);
+            // console.log(enddate);
+
+            if (firstName == "") {
+                document.getElementById("first-name-error").innerHTML = "Invalid First Name";
+            } else document.getElementById("first-name-error").innerHTML = "";
+
+            if (lastName == "")
+                document.getElementById("last-name-error").innerHTML = "Invalid Last Name";
+            else document.getElementById("last-name-error").innerHTML = "";
+
+            if (!emailPattern.test(email))
+                document.getElementById("email-error").innerHTML = "Invalid email";
+            else document.getElementById("email-error").innerHTML = "";
+
+            if (!phoneno.test(mobile))
+                document.getElementById("mobile-number-error").innerHTML = "Invalid number";
+            else document.getElementById("mobile-number-error").innerHTML = "";
+            if (startdate == "Invalid Date" || startdate.getDate() < today.getDate() || startdate.getMonth < today.getMonth
+                || startdate.getFullYear < today.getFullYear) {
+                document.getElementById("start-date-error").innerHTML = "Invalid date";
+            } else document.getElementById("start-date-error").innerHTML = "";
+            if (enddate == "Invalid Date" || enddate.getDate() < today.getDate() || enddate.getMonth < today.getMonth
+                || enddate.getFullYear < today.getFullYear) {
+                document.getElementById("end-date-error").innerHTML = "Invalid date";
+            } else document.getElementById("end-date-error").innerHTML = "";
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="main-form">
+        <div class="form-element" id="form-heading">
+            <h4>Hotel Booking Form</h4>
+        </div>
+        <!-- First div -->
+        <div class="form-element">
+            <div class="form-element-child input-label">
+                <label>First Name</label>
+            </div>
+            <div class="form-element-child input-validation">
+                <input class="user-input" id="first-name" type="text">
+                <div class="error-container disabled" id="first-name-error"></div>
+            </div>
+        </div>
+        <!-- second div -->
+        <div class="form-element">
+            <div class="form-element-child input-label">
+                <label>Last Name</label>
+            </div>
+            <div class="form-element-child input-validation">
+                <input class="user-input" id="last-name" type="text">
+                <div class="error-container disabled" id="last-name-error"></div>
+            </div>
+        </div>
+        <!-- third div -->
+        <div class="form-element">
+            <div class="form-element-child input-label">
+                <label>Email</label>
+            </div>
+            <div class="form-element-child input-validation">
+                <input class="user-input" id="email" type="text">
+                <div class="error-container disabled" id="email-error"></div>
+            </div>
+        </div>
+        <!-- fourth div -->
+        <div class="form-element">
+            <div class="form-element-child input-label">
+                <label>Mobile Number</label>
+            </div>
+            <div class="form-element-child input-validation">
+                <input class="user-input" id="mobile-number" type="text">
+                <div class="error-container disabled" id="mobile-number-error"></div>
+            </div>
+        </div><br>
+        <!-- fifth div -->
+        <div class="form-element" id="date-element">
+            <div class="form-element-child start-date">
+                <label>Start Date</label>
+                <div><input type="date" id="start-date"></div>
+                <div class="error-container disabled" id="start-date-error"></div>
+            </div><br>
+            <div class="form-element-child end-date">
+                <label>End Date</label>
+                <div><input type="date" id="end-date"></div>
+                <div class="error-container disabled" id="end-date-error"></div>
+            </div>
+        </div><br>
+        <!-- sixth div -->
+        <div align="center" class="form-element6">
+            <a href="#" onclick="validate()" id="submit-button">Submit</a>
+        </div>
+    </div>
+
+</body>
+
+</html>
